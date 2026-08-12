@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Guard — Clinical AI Heart Disease Risk Assessment</title>
+  <meta name="description" content="AI-powered heart disease risk prediction tool based on clinical metrics and machine learning models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="background-decor">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <main class="app-container">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            <path d="M12 12v3" stroke="#fff" stroke-width="2"></path>
+            <path d="M9 12h6" stroke="#fff" stroke-width="2"></path>
+          </svg>
+        </div>
+        <div>
+          <h1>HeartGuard AI</h1>
+          <p class="tagline">Clinical Machine Learning Risk Evaluation Engine</p>
+        </div>
+      </div>
+      <button type="button" id="fill-sample-btn" class="btn-secondary">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        Autofill Sample Patient
+      </button>
+    </header>
+
+    <div class="content-grid">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <div class="card-header">
+          <h2>Patient Diagnostic Parameters</h2>
+          <p>Complete the clinical readings below to generate an instant risk profile.</p>
+        </div>
+
+        <form id="predict-form" autocomplete="off">
+          <div class="fields-grid">
+
+            <div class="field">
+              <label for="Age">Age (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="Age" min="1" max="120" required placeholder="e.g. 54">
+                <span class="unit">yrs</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="Sex">Biological Sex</label>
+              <select id="Sex" required>
+                <option value="M">Male (M)</option>
+                <option value="F">Female (F)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="ChestPainType">Chest Pain Type</label>
+              <select id="ChestPainType" required>
+                <option value="ASY">Asymptomatic (ASY)</option>
+                <option value="ATA">Atypical Angina (ATA)</option>
+                <option value="NAP">Non-Anginal Pain (NAP)</option>
+                <option value="TA">Typical Angina (TA)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="RestingBP">Resting Blood Pressure</label>
+              <div class="input-wrapper">
+                <input type="number" id="RestingBP" min="50" max="250" required placeholder="e.g. 130">
+                <span class="unit">mm Hg</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="Cholesterol">Serum Cholesterol</label>
+              <div class="input-wrapper">
+                <input type="number" id="Cholesterol" min="0" max="700" required placeholder="e.g. 235">
+                <span class="unit">mg/dl</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="FastingBS">Fasting Blood Sugar &gt; 120 mg/dl</label>
+              <select id="FastingBS" required>
+                <option value="0">No (&le; 120 mg/dl)</option>
+                <option value="1">Yes (&gt; 120 mg/dl)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="RestingECG">Resting Electrocardiogram</label>
+              <select id="RestingECG" required>
+                <option value="Normal">Normal</option>
+                <option value="ST">ST-T Wave Abnormality (ST)</option>
+                <option value="LVH">Left Ventricular Hypertrophy (LVH)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="MaxHR">Maximum Heart Rate Achieved</label>
+              <div class="input-wrapper">
+                <input type="number" id="MaxHR" min="60" max="230" required placeholder="e.g. 145">
+                <span class="unit">bpm</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="ExerciseAngina">Exercise-Induced Angina</label>
+              <select id="ExerciseAngina" required>
+                <option value="N">No (N)</option>
+                <option value="Y">Yes (Y)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="Oldpeak">ST Depression (Oldpeak)</label>
+              <div class="input-wrapper">
+                <input type="number" step="0.1" id="Oldpeak" min="-5" max="10" required placeholder="e.g. 1.5">
+                <span class="unit">mm</span>
+              </div>
+            </div>
+
+            <div class="field full-width">
+              <label for="ST_Slope">Peak Exercise ST Segment Slope</label>
+              <select id="ST_Slope" required>
+                <option value="Up">Upsloping (Up)</option>
+                <option value="Flat">Flat</option>
+                <option value="Down">Downsloping (Down)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="submit-btn" class="btn-primary">
+              <span class="btn-text">Generate Prediction Report</span>
+              <div class="spinner hidden"></div>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Results Display Card -->
+      <section class="card results-card" id="results-card">
+        <div class="placeholder-state" id="placeholder-state">
+          <div class="pulse-heart">❤️</div>
+          <h3>Ready for Evaluation</h3>
+          <p>Fill in patient measurements and click "Generate Prediction Report" to view risk score calculations.</p>
+        </div>
+
+        <div class="analysis-state hidden" id="analysis-state">
+          <div class="risk-gauge-container">
+            <div class="risk-score-circle" id="risk-score-circle">
+              <span class="risk-number" id="risk-percentage">0%</span>
+              <span class="risk-label">Risk Probability</span>
+            </div>
+          </div>
+
+          <div class="result-badge" id="result-badge">
+            Calculating...
+          </div>
+
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+          </div>
+
+          <div class="metrics-summary" id="metrics-summary">
+            <!-- Dynamic insights appended here -->
+          </div>
+
+          <div class="disclaimer">
+            ⚠️ <strong>Medical Disclaimer:</strong> This web application uses machine learning algorithms for informational and decision-support purposes only. It does not replace professional medical diagnosis or clinical judgement.
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
